@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { mainStyles, mainButtonGradient, gradientEnd} from '../../styles/MainStyles';
-import IntroScreenStyles from './style';
+import introScreenStyles from './style';
 import Wave from '../../components/Wave';
 
 const IntroScreen = () => {
@@ -10,10 +10,10 @@ const IntroScreen = () => {
     <View style={mainStyles.screenSettings}>
       <Wave/>
       <View style={[mainStyles.equalizer]}>
-        <View style={IntroScreenStyles.contentContainer}>
-          <View style={IntroScreenStyles.nameTextContainer}>
-            <Text style={[mainStyles.mainHeaderText, IntroScreenStyles.mainHeaderText]}>Write It Down</Text>
-            <Text style={[mainStyles.textDescription, IntroScreenStyles.textDescription]}>
+        <View style={introScreenStyles.contentContainer}>
+          <View style={introScreenStyles.nameTextContainer}>
+            <Text style={[mainStyles.mainHeaderText, introScreenStyles.mainHeaderText]}>Write It Down</Text>
+            <Text style={[mainStyles.textDescription, introScreenStyles.textDescription]}>
               This is a mobile diary app that allows you to document events, 
               record emotions, and attach photos and audio. Capture your 
               memories effortlessly and keep track of your daily experiences 

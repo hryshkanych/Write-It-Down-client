@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const IntroScreenStyles = StyleSheet.create({
+const introScreenStyles = StyleSheet.create({
   contentContainer: {
     marginTop: '9%',
     flex: 1,
@@ -13,7 +13,6 @@ const IntroScreenStyles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    // backgroundColor: 'red',
   },
   mainHeaderText:{
     textAlign: 'center',
@@ -24,4 +23,4 @@ const IntroScreenStyles = StyleSheet.create({
   }
 });
 
-export default IntroScreenStyles;
+export default introScreenStyles;
