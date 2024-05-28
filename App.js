@@ -1,13 +1,11 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
+import IntroScreen from './src/screens/IntroScreen';
+
 const App = () => {
   return (
-    <View>
-      <Text>Hello</Text>
-      <Text>Hello</Text>
-      <Text>Hello</Text>
-    </View>
+    <IntroScreen/>
   );
 };
 
