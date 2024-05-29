@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { inputColors} from '../../styles/MainStyles';
 
-const alternativeLoginStyles = StyleSheet.create({
+const alternativeSignUpStyles = StyleSheet.create({
   alternaiveContainer: {
     width: '100%',
     flexDirection: 'row',
@@ -21,5 +21,5 @@ const alternativeLoginStyles = StyleSheet.create({
   },
 });
   
-export default alternativeLoginStyles;
+export default alternativeSignUpStyles;
   

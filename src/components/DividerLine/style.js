@@ -14,6 +14,7 @@ const dividerLineStyles = StyleSheet.create({
   },
   textLine: {
     marginHorizontal: 10, 
+    color: '#38232D'
   },
 });
   
