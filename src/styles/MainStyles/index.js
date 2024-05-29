@@ -9,18 +9,31 @@ const mainButtonGradient = {
   thirdColor: '#B6A8A0',
 };
 
+const mainAppColors = {
+  background: 'white'
+}
+
 const fontSizes = {
   header: 38,
+  subHeader: 22,
   button: 16,
   main: 14,
+  intensiveMain: 18,
+  small: 12.5,
 };
 
 const fontWeights = {
   button: 'bold',
+  header: 'bold',
 }
 
 const fontColors = {
   button: 'white',
+}
+
+const inputColors = {
+  main: '#F0F1F1',
+  border: '#D8D8D8'
 }
 
 const gradientEnd = { x: 1, y: 0 };
@@ -33,7 +46,7 @@ const mainStyles = StyleSheet.create({
     height: windowHeight,
     },
   equalizer: {
-    paddingHorizontal: 32,
+    paddingHorizontal: 28,
     width: '100%',
     flex: 1,
   },
@@ -49,29 +62,15 @@ const mainStyles = StyleSheet.create({
   textDescription: {
     fontSize: fontSizes.main
   },
-
-  //buttons
-  mainButton: {
-    width: '100%',
-    height: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 50,
-    overflow: 'hidden',
+  subHeaderText: {
+    fontSize: fontSizes.subHeader,
+    fontWeight: fontWeights.header,
   },
-  buttonText: {
-    color: fontColors.button,
-    fontWeight: fontWeights.button,
-    fontSize: fontSizes.button
+  intensiveMainText: {
+    fontSize: fontSizes.intensiveMain
   },
-  gradient: {
-    flex: 1,
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
 
 });
 
 
-export { mainStyles, fontSizes, mainButtonGradient, gradientEnd };
+export { mainStyles, fontSizes, mainButtonGradient, gradientEnd, mainAppColors, inputColors, fontColors, fontWeights};
