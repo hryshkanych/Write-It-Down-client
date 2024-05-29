@@ -29,6 +29,7 @@ const fontWeights = {
 
 const fontColors = {
   button: 'white',
+  main: '#38232D'
 }
 
 const inputColors = {
@@ -57,18 +58,26 @@ const mainStyles = StyleSheet.create({
 
   //text
   mainHeaderText: {
-    fontSize: fontSizes.header
+    fontSize: fontSizes.header,
+    color: fontColors.main,
   },
   textDescription: {
-    fontSize: fontSizes.main
+    fontSize: fontSizes.main,
+    color: fontColors.main,
   },
   subHeaderText: {
     fontSize: fontSizes.subHeader,
     fontWeight: fontWeights.header,
+    color: fontColors.main,
   },
   intensiveMainText: {
-    fontSize: fontSizes.intensiveMain
+    fontSize: fontSizes.intensiveMain,
+    color: fontColors.main,
   },
+  smallText: {
+    fontSize: fontSizes.small,
+    color: fontColors.main,
+  }
 
 });
 
