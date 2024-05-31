@@ -30,7 +30,8 @@ const fontWeights = {
 
 const fontColors = {
   button: 'white',
-  main: '#38232D'
+  main: '#38232D',
+  sub: '#898081'
 }
 
 const inputColors = {
@@ -71,6 +72,10 @@ const mainStyles = StyleSheet.create({
   textDescription: {
     fontSize: fontSizes.main,
     color: fontColors.main,
+  },
+  textDescriptionGrey: {
+    fontSize: fontSizes.main,
+    color: fontColors.sub,
   },
   subHeaderText: {
     fontSize: fontSizes.subHeader,

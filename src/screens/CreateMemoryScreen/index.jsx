@@ -5,29 +5,22 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { FontAwesome } from 'react-native-vector-icons';
 import { mainStyles } from '../../styles/MainStyles';
 import { mainButtonGradient, gradientEnd } from '../../styles/MainStyles';
-import mainScreenStyles from './style';
+import createMemoryScreenStyles from './style';
 import AlternativeSignUp from '../../components/AlternativeSignUp';
-import Header from '../../components/Header';
+import CreatingHeader from '../../components/CreatingHeader';
 import Note from '../../components/Note';
 import AddButton from '../../components/AddButton';
 
-const MainScreen = () => {
+const CreateMemoryScreen = () => {
   return (
-    <LinearGradient
-      colors={['#F2E8EB', '#EEEEE8']}
-      style={mainStyles.screenSettings}
-    >
-      <Header/>
-      <ScrollView style={[mainStyles.screenSettings, mainScreenStyles.screenSettings]}>
+    <View style={mainStyles.screenSettings}>
+      <CreatingHeader/>
+      <ScrollView style={[mainStyles.screenSettings, createMemoryScreenStyles.screenSettings]}>
         <View style={mainStyles.equalizer}>
-          <Note/>
         </View>
       </ScrollView>
-      <BlurView intensity={25} style={mainScreenStyles.addButtonContainer}>
-        <AddButton />
-      </BlurView>
-    </LinearGradient>
+    </View>
   );
 };
 
-export default MainScreen;
+export default CreateMemoryScreen;

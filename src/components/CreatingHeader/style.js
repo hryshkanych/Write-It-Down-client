@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import { inputColors } from '../../styles/MainStyles';
+import { fontSizes } from '../../styles/MainStyles';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -21,12 +21,9 @@ const headerStyles = StyleSheet.create({
     elevation: 5,
     zIndex: 10,
   },
-  headerText: {
-    marginBottom: 3,
-  },
-  filterButton: {
-    width: 40,
-    height: 40,
+  editButton: {
+    width: 27,
+    height: 27,
     borderRadius: 30,
     backgroundColor: '#9EA47B', 
     justifyContent: 'center',
@@ -39,6 +36,18 @@ const headerStyles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
   },
+  clickableText: {
+    color: '#B0255F',
+    fontWeight: 'bold',
+    fontSize: fontSizes.intensiveMain
+  },
+  dataContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 10,
+  }
   
 });
 

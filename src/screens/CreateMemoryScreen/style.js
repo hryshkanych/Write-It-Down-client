@@ -1,7 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-
-const mainScreenStyles = StyleSheet.create({
+const createMemoryScreenStyles = StyleSheet.create({
   screenSettings: {
     paddingTop: 140,
   },
@@ -16,4 +15,4 @@ const mainScreenStyles = StyleSheet.create({
   
 });
 
-export default mainScreenStyles;
+export default createMemoryScreenStyles;
