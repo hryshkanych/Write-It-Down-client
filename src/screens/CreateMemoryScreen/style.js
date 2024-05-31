@@ -2,7 +2,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 
 const createMemoryScreenStyles = StyleSheet.create({
   screenSettings: {
-    paddingTop: 140,
+    paddingTop: 130,
   },
   addButtonContainer: {
     width: '100%',

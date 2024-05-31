@@ -10,7 +10,7 @@ import CreateMemoryScreen from './src/screens/CreateMemoryScreen';
 
 const App = () => {
   return (
-    <CreateMemoryScreen/>
+    <MainScreen/>
   );
 };
 

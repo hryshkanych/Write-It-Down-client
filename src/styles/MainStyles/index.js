@@ -10,7 +10,8 @@ const mainButtonGradient = {
 };
 
 const mainAppColors = {
-  background: 'white'
+  background: 'white',
+  icon: '#9CA17A'
 }
 
 const fontSizes = {
