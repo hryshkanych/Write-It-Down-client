@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import { inputColors } from '../../styles/MainStyles';
+import { inputColors, mainAppColors } from '../../styles/MainStyles';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -28,7 +28,7 @@ const headerStyles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 30,
-    backgroundColor: '#9EA47B', 
+    backgroundColor: mainAppColors.icon, 
     justifyContent: 'center',
     alignItems: 'center',
   },

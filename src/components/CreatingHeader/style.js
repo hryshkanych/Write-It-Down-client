@@ -1,9 +1,9 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import { fontSizes } from '../../styles/MainStyles';
+import { fontSizes, mainAppColors } from '../../styles/MainStyles';
 
 const windowWidth = Dimensions.get('window').width;
 
-const headerStyles = StyleSheet.create({
+const creatingHeaderStyles = StyleSheet.create({
   headerContainer: {
     width: '100%',
     height: 105,
@@ -25,7 +25,7 @@ const headerStyles = StyleSheet.create({
     width: 27,
     height: 27,
     borderRadius: 30,
-    backgroundColor: '#9EA47B', 
+    backgroundColor: mainAppColors.icon, 
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -51,4 +51,4 @@ const headerStyles = StyleSheet.create({
   
 });
 
-export default headerStyles;
+export default creatingHeaderStyles;

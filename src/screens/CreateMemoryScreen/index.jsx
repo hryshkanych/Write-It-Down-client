@@ -8,6 +8,7 @@ import { mainButtonGradient, gradientEnd } from '../../styles/MainStyles';
 import createMemoryScreenStyles from './style';
 import AlternativeSignUp from '../../components/AlternativeSignUp';
 import CreatingHeader from '../../components/CreatingHeader';
+import CreatingBottom from '../../components/CreatingBottom';
 import Note from '../../components/Note';
 import AddButton from '../../components/AddButton';
 
@@ -15,8 +16,10 @@ const CreateMemoryScreen = () => {
   return (
     <View style={mainStyles.screenSettings}>
       <CreatingHeader/>
+      <CreatingBottom/>
       <ScrollView style={[mainStyles.screenSettings, createMemoryScreenStyles.screenSettings]}>
         <View style={mainStyles.equalizer}>
+
         </View>
       </ScrollView>
     </View>
