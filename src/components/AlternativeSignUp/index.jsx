@@ -9,7 +9,7 @@ const AlternativeSignUp = () => (
       <FontAwesome name="google" size={26} color="#DB4437" />
     </TouchableOpacity>
     <TouchableOpacity style={alternativeSignUpStyles.alternativeButton}>
-      <FontAwesome name="facebook" size={26} color="#535DBE" />
+      <FontAwesome name="facebook" size={26} color="#535DBE"/>
     </TouchableOpacity>
   </View>
 );

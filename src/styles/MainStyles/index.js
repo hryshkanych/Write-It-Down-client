@@ -14,7 +14,8 @@ const mainAppColors = {
 }
 
 const fontSizes = {
-  header: 38,
+  mainHeader: 32,
+  header: 26,
   subHeader: 22,
   button: 16,
   main: 14,
@@ -29,7 +30,8 @@ const fontWeights = {
 
 const fontColors = {
   button: 'white',
-  main: '#38232D'
+  main: '#38232D',
+  sub: '#898081'
 }
 
 const inputColors = {
@@ -45,7 +47,7 @@ const mainStyles = StyleSheet.create({
   screenSettings: {
     width: windowWidth,
     height: windowHeight,
-    },
+  },
   equalizer: {
     paddingHorizontal: 28,
     width: '100%',
@@ -58,12 +60,22 @@ const mainStyles = StyleSheet.create({
 
   //text
   mainHeaderText: {
+    fontSize: fontSizes.mainHeader,
+    color: fontColors.main,
+    fontWeight: fontWeights.header,
+  },
+  headerText: {
     fontSize: fontSizes.header,
     color: fontColors.main,
+    fontWeight: fontWeights.header,
   },
   textDescription: {
     fontSize: fontSizes.main,
     color: fontColors.main,
+  },
+  textDescriptionGrey: {
+    fontSize: fontSizes.main,
+    color: fontColors.sub,
   },
   subHeaderText: {
     fontSize: fontSizes.subHeader,
