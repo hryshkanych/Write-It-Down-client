@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 const waveStyles = StyleSheet.create({
   headSection: {
     width: '100%',
-    height: '58%',
+    height: '60%',
   },
   waveDivider: {
     position: 'absolute',

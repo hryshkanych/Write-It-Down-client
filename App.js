@@ -4,11 +4,12 @@ import { View, Text } from 'react-native';
 import IntroScreen from './src/screens/IntroScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 import LogInScreen from './src/screens/LogIntoScreen';
+import MainScreen from './src/screens/MainScreen';
 
 
 const App = () => {
   return (
-    <LogInScreen/>
+    <MainScreen/>
   );
 };
 

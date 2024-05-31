@@ -4,8 +4,13 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { mainStyles, mainButtonGradient, gradientEnd} from '../../styles/MainStyles';
 import introScreenStyles from './style';
 import Wave from '../../components/Wave';
+import TapButton from '../../components/Button';
 
 const IntroScreen = () => {
+  const handleGetStartedPress = () => {
+    
+  }
+
   return (
     <View style={mainStyles.screenSettings}>
       <Wave/>
@@ -20,15 +25,7 @@ const IntroScreen = () => {
               all in one place.
             </Text>
           </View>
-          <TouchableOpacity style={mainStyles.mainButton}>
-            <LinearGradient
-              colors={[mainButtonGradient.firstColor, mainButtonGradient.secondColor, mainButtonGradient.thirdColor]}
-              end={gradientEnd}
-              style={mainStyles.gradient}
-            >
-              <Text style={mainStyles.buttonText}>Get Started</Text>
-            </LinearGradient>
-          </TouchableOpacity>
+          <TapButton onPress={handleGetStartedPress} buttonText="Get Started"/>
         </View>
       </View>
     </View>
