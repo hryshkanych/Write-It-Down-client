@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ImageBackground, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, ImageBackground, TextInput, Alert } from 'react-native';
 import Checkbox from 'expo-checkbox';
 import { FontAwesome } from 'react-native-vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -9,18 +9,42 @@ import InputWithIcon from '../../components/Input';
 import TapButton from '../../components/Button';
 import AlternativeSignUp from '../../components/AlternativeSignUp';
 import DividerLine from '../../components/DividerLine';
+import { signupUser } from '../../services/userService';
+import { useNavigation } from '@react-navigation/native';
 
 const backgroundImage = require('../../../assets/Images/viewSignUp.png');
 
 const SignUpScreen = () => {
+  const navigation = useNavigation();
   const [isChecked, setChecked] = useState(false);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleRegisterPress = () => {
+  const handleRegisterPress = async () => {
+    try {
+      if (!isChecked) {
+        Alert.alert('Error', 'You must accept our Privacy Policy and Term of Use to register');
+        return;
+      }
+  
+      const newUser = { username, email, password };
+      const response = await signupUser(newUser); 
+  
+      // Alert.alert('Success', response.message);
+      setUsername('');
+      setEmail('');
+      setPassword('');
+      setChecked(false);
+      navigation.navigate('Main-page');
+    } catch (error) {
+      Alert.alert('Error', error.message);
+    }
+  };
 
-  }
+  const handleLogInPress = () => {
+    navigation.navigate('Log-in');
+  };
 
   return (
     <View style={mainStyles.screenSettings}>
@@ -55,6 +79,7 @@ const SignUpScreen = () => {
             value={password}
             onChangeText={setPassword}
             iconSize={22}
+            secureTextEntry={true}
           />
           <View style={signUpScreenStyles.checkboxContainer}>
             <Checkbox style={signUpScreenStyles.checkbox} value={isChecked} onValueChange={setChecked} />
@@ -67,7 +92,9 @@ const SignUpScreen = () => {
           <AlternativeSignUp/>
           <View style={signUpScreenStyles.toLogInContainer}>
             <Text style={mainStyles.textDescription}>Already have an account?</Text>
-            <Text style={signUpScreenStyles.clickableText}>Log in</Text>
+            <TouchableOpacity onPress={handleLogInPress}>
+              <Text style={signUpScreenStyles.clickableText}>Log in</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
