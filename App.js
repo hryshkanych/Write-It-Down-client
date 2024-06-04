@@ -10,35 +10,38 @@ import CreateMemoryScreen from './src/screens/CreateMemoryScreen';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { UserProvider } from './src/contexts/userContext';
 
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-      <Stack.Screen
-          name="Introduction"
-          component={IntroScreen}
-          options={{ headerShown: false }} 
-        />
-      <Stack.Screen
-          name="Sign-up"
-          component={SignUpScreen}
-          options={{ headerShown: false }} 
-        />
-      <Stack.Screen
-          name="Log-in"
-          component={LogInScreen}
-          options={{ headerShown: false }} 
-        />
-      <Stack.Screen
-          name="Main-page"
-          component={MainScreen}
-          options={{ headerShown: false }} 
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <UserProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+        <Stack.Screen
+            name="Introduction"
+            component={IntroScreen}
+            options={{ headerShown: false }} 
+          />
+        <Stack.Screen
+            name="Sign-up"
+            component={SignUpScreen}
+            options={{ headerShown: false }} 
+          />
+        <Stack.Screen
+            name="Log-in"
+            component={LogInScreen}
+            options={{ headerShown: false }} 
+          />
+        <Stack.Screen
+            name="Main-page"
+            component={MainScreen}
+            options={{ headerShown: false }} 
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </UserProvider>
   );
 };
 

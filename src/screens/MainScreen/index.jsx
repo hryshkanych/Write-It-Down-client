@@ -10,8 +10,11 @@ import AlternativeSignUp from '../../components/AlternativeSignUp';
 import Header from '../../components/Header';
 import Note from '../../components/Note';
 import AddButton from '../../components/AddButton';
+import { useUserContext } from '../../contexts/userContext';
 
 const MainScreen = () => {
+  const { user } = useUserContext();
+  console.log('Main component: ', user);
   return (
     <LinearGradient
       colors={['#F2E8EB', '#EEEEE8']}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ImageBackground, TextInput, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, ImageBackground, Alert } from 'react-native';
 import Checkbox from 'expo-checkbox';
 import { FontAwesome } from 'react-native-vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -27,11 +27,10 @@ const SignUpScreen = () => {
         Alert.alert('Error', 'You must accept our Privacy Policy and Term of Use to register');
         return;
       }
-  
+
       const newUser = { username, email, password };
       const response = await signupUser(newUser); 
-  
-      // Alert.alert('Success', response.message);
+
       setUsername('');
       setEmail('');
       setPassword('');
@@ -44,6 +43,10 @@ const SignUpScreen = () => {
 
   const handleLogInPress = () => {
     navigation.navigate('Log-in');
+  };
+
+  const handleEmailChange = (text) => {
+    setEmail(text.toLowerCase());
   };
 
   return (
@@ -70,7 +73,7 @@ const SignUpScreen = () => {
             iconName="envelope"
             placeholder="Email"
             value={email}
-            onChangeText={setEmail}
+            onChangeText={handleEmailChange}
             iconSize={18}
           />
           <InputWithIcon

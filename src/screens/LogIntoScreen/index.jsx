@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ImageBackground, TextInput, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, ImageBackground, Alert } from 'react-native';
 import Checkbox from 'expo-checkbox';
 import { FontAwesome } from 'react-native-vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -11,6 +11,7 @@ import AlternativeSignUp from '../../components/AlternativeSignUp';
 import DividerLine from '../../components/DividerLine';
 import { loginUser } from '../../services/userService'; 
 import { useNavigation } from '@react-navigation/native';
+import { useUserContext } from '../../contexts/userContext';
 
 const backgroundImage = require('../../../assets/Images/viewLogin.png');
 
@@ -18,11 +19,15 @@ const LogInScreen = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { user, setUser } = useUserContext();
 
   const handleLogInPress = async () => {
     try {
-      const user = { email, password };
-      const response = await loginUser(user); 
+      const newUser = { email, password };
+      const response = await loginUser(newUser); 
+      console.log(JSON.stringify(response.user));
+      setUser(response.user);
+      console.log('from user context', user);
       navigation.navigate('Main-page');
       // Alert.alert('Success', response.message);
       
@@ -34,6 +39,10 @@ const LogInScreen = () => {
 
   const handleSignUpPress = () => {
     navigation.navigate('Sign-up');
+  };
+
+  const handleEmailChange = (text) => {
+    setEmail(text.toLowerCase());
   };
 
   return (
@@ -53,7 +62,7 @@ const LogInScreen = () => {
             iconName="envelope"
             placeholder="Email"
             value={email}
-            onChangeText={setEmail}
+            onChangeText={handleEmailChange}
             iconSize={18}
           />
           <InputWithIcon
