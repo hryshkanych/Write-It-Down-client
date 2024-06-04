@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 const introScreenStyles = StyleSheet.create({
+  screenSettings: {
+    backgroundColor: 'white',
+  },
   contentContainer: {
     marginTop: '9%',
     flex: 1,

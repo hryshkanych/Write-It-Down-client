@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ImageBackground, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, ImageBackground, TextInput, Alert } from 'react-native';
 import Checkbox from 'expo-checkbox';
 import { FontAwesome } from 'react-native-vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -9,17 +9,32 @@ import InputWithIcon from '../../components/Input';
 import TapButton from '../../components/Button';
 import AlternativeSignUp from '../../components/AlternativeSignUp';
 import DividerLine from '../../components/DividerLine';
+import { loginUser } from '../../services/userService'; 
+import { useNavigation } from '@react-navigation/native';
 
 const backgroundImage = require('../../../assets/Images/viewLogin.png');
 
 const LogInScreen = () => {
-  const [isChecked, setChecked] = useState(false);
+  const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogInPress = () => {
+  const handleLogInPress = async () => {
+    try {
+      const user = { email, password };
+      const response = await loginUser(user); 
+      navigation.navigate('Main-page');
+      // Alert.alert('Success', response.message);
+      
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Error', error.message);
+    }
+  };
 
-  }
+  const handleSignUpPress = () => {
+    navigation.navigate('Sign-up');
+  };
 
   return (
     <View style={mainStyles.screenSettings}>
@@ -47,6 +62,7 @@ const LogInScreen = () => {
             value={password}
             onChangeText={setPassword}
             iconSize={22}
+            secureTextEntry={true}
           />
           <View style={logInStyles.forgotPassContainer}>
             <Text style={logInStyles.clickableText}>Forgot your password?</Text>
@@ -56,7 +72,9 @@ const LogInScreen = () => {
           <AlternativeSignUp/>
           <View style={logInStyles.toSignUpContainer}>
             <Text style={mainStyles.textDescription}>Don’t have an account yet?</Text>
-            <Text style={logInStyles.clickableText}>Register</Text>
+            <TouchableOpacity onPress={handleSignUpPress}>
+              <Text style={logInStyles.clickableText}>Register</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>

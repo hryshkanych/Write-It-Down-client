@@ -4,7 +4,7 @@ import { FontAwesome } from 'react-native-vector-icons';
 import inputStyles from './style';
 import { inputColors } from '../../styles/MainStyles';
 
-const InputWithIcon = ({ iconName, placeholder, value, onChangeText, iconSize }) => (
+const InputWithIcon = ({ iconName, placeholder, value, onChangeText, iconSize, secureTextEntry }) => (
   <View style={inputStyles.inputContainer}>
     <View style={inputStyles.icon}>
       <FontAwesome name={iconName} size={iconSize} color={'#BFBFBF'} />
@@ -14,6 +14,7 @@ const InputWithIcon = ({ iconName, placeholder, value, onChangeText, iconSize })
       placeholder={placeholder}
       value={value}
       onChangeText={onChangeText}
+      secureTextEntry={secureTextEntry}
     />
   </View>
 );

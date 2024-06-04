@@ -5,14 +5,17 @@ import { mainStyles, mainButtonGradient, gradientEnd} from '../../styles/MainSty
 import introScreenStyles from './style';
 import Wave from '../../components/Wave';
 import TapButton from '../../components/Button';
+import { useNavigation } from '@react-navigation/native';
 
 const IntroScreen = () => {
+  const navigation = useNavigation();
+
   const handleGetStartedPress = () => {
-    
+    navigation.navigate('Sign-up');
   }
 
   return (
-    <View style={mainStyles.screenSettings}>
+    <View style={[mainStyles.screenSettings, introScreenStyles.screenSettings]}>
       <Wave/>
       <View style={[mainStyles.equalizer]}>
         <View style={introScreenStyles.contentContainer}>
