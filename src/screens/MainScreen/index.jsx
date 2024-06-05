@@ -11,10 +11,18 @@ import Header from '../../components/Header';
 import Note from '../../components/Note';
 import AddButton from '../../components/AddButton';
 import { useUserContext } from '../../contexts/userContext';
+import { useNavigation } from '@react-navigation/native';
 
 const MainScreen = () => {
   const { user } = useUserContext();
-  console.log('Main component: ', user);
+  const navigation = useNavigation();
+
+  // console.log('Main component: ', user);
+
+  const handleAddPress = () => {
+    navigation.navigate('Create-memory');
+  }
+
   return (
     <LinearGradient
       colors={['#F2E8EB', '#EEEEE8']}
@@ -27,7 +35,7 @@ const MainScreen = () => {
         </View>
       </ScrollView>
       <BlurView intensity={25} style={mainScreenStyles.addButtonContainer}>
-        <AddButton />
+        <AddButton onPress={handleAddPress} />
       </BlurView>
     </LinearGradient>
   );

@@ -1,7 +1,6 @@
 import axios from 'axios';
-import { useUserContext } from '../contexts/userContext';
 
-const baseURL = 'http://192.168.1.103:3000/Users';
+const baseURL = 'http://192.168.1.101:3000/Users';
 
 const signupUser = async (newUser) => {
   try {
@@ -14,10 +13,7 @@ const signupUser = async (newUser) => {
 
 const loginUser = async (newUser) => {
   try {
-    // const { setUser } = useUserContext();
-    console.log('in login ', newUser);
     const response = await axios.post(`${baseURL}/login`, newUser);
-    // setUser(response.data);
     return response.data;
   } catch (error) {
     throw error.response.data;

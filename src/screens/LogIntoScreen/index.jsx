@@ -25,14 +25,15 @@ const LogInScreen = () => {
     try {
       const newUser = { email, password };
       const response = await loginUser(newUser); 
-      console.log(JSON.stringify(response.user));
       setUser(response.user);
-      console.log('from user context', user);
+
+      setEmail('');
+      setPassword('');
+
       navigation.navigate('Main-page');
       // Alert.alert('Success', response.message);
       
     } catch (error) {
-      console.log(error);
       Alert.alert('Error', error.message);
     }
   };

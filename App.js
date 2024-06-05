@@ -4,7 +4,6 @@ import { View, Text } from 'react-native';
 import IntroScreen from './src/screens/IntroScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 import LogInScreen from './src/screens/LogIntoScreen'; // Під іншим ім'ям
-
 import MainScreen from './src/screens/MainScreen';
 import CreateMemoryScreen from './src/screens/CreateMemoryScreen';
 
@@ -37,6 +36,11 @@ const App = () => {
         <Stack.Screen
             name="Main-page"
             component={MainScreen}
+            options={{ headerShown: false }} 
+          />
+        <Stack.Screen
+            name="Create-memory"
+            component={CreateMemoryScreen}
             options={{ headerShown: false }} 
           />
         </Stack.Navigator>

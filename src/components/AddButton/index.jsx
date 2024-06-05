@@ -5,9 +5,9 @@ import { FontAwesome } from 'react-native-vector-icons';
 import { mainButtonGradient, gradientEnd } from '../../styles/MainStyles';
 import addButtonStyles from './style';
 
-const AddButton = () => {
+const AddButton = ({ onPress }) => {
   return (
-    <TouchableOpacity style={addButtonStyles.addButton}>
+    <TouchableOpacity style={addButtonStyles.addButton} onPress={onPress}>
       <LinearGradient
         colors={[mainButtonGradient.firstColor, mainButtonGradient.secondColor, mainButtonGradient.thirdColor]}
         end={gradientEnd}

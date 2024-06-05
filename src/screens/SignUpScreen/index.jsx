@@ -11,6 +11,8 @@ import AlternativeSignUp from '../../components/AlternativeSignUp';
 import DividerLine from '../../components/DividerLine';
 import { signupUser } from '../../services/userService';
 import { useNavigation } from '@react-navigation/native';
+import { useUserContext } from '../../contexts/userContext';
+
 
 const backgroundImage = require('../../../assets/Images/viewSignUp.png');
 
@@ -20,6 +22,8 @@ const SignUpScreen = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { user, setUser } = useUserContext();
+
 
   const handleRegisterPress = async () => {
     try {
@@ -30,6 +34,7 @@ const SignUpScreen = () => {
 
       const newUser = { username, email, password };
       const response = await signupUser(newUser); 
+      setUser(response.user);
 
       setUsername('');
       setEmail('');
