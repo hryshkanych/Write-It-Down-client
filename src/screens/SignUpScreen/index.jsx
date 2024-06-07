@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ImageBackground, TextInput, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, ImageBackground, Alert } from 'react-native';
 import Checkbox from 'expo-checkbox';
 import { FontAwesome } from 'react-native-vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -11,6 +11,8 @@ import AlternativeSignUp from '../../components/AlternativeSignUp';
 import DividerLine from '../../components/DividerLine';
 import { signupUser } from '../../services/userService';
 import { useNavigation } from '@react-navigation/native';
+import { useUserContext } from '../../contexts/userContext';
+
 
 const backgroundImage = require('../../../assets/Images/viewSignUp.png');
 
@@ -20,6 +22,8 @@ const SignUpScreen = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { user, setUser } = useUserContext();
+
 
   const handleRegisterPress = async () => {
     try {
@@ -27,11 +31,11 @@ const SignUpScreen = () => {
         Alert.alert('Error', 'You must accept our Privacy Policy and Term of Use to register');
         return;
       }
-  
+
       const newUser = { username, email, password };
       const response = await signupUser(newUser); 
-  
-      // Alert.alert('Success', response.message);
+      setUser(response.user);
+
       setUsername('');
       setEmail('');
       setPassword('');
@@ -44,6 +48,10 @@ const SignUpScreen = () => {
 
   const handleLogInPress = () => {
     navigation.navigate('Log-in');
+  };
+
+  const handleEmailChange = (text) => {
+    setEmail(text.toLowerCase());
   };
 
   return (
@@ -70,7 +78,7 @@ const SignUpScreen = () => {
             iconName="envelope"
             placeholder="Email"
             value={email}
-            onChangeText={setEmail}
+            onChangeText={handleEmailChange}
             iconSize={18}
           />
           <InputWithIcon

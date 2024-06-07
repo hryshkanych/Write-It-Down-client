@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://172.20.10.2:3000/Users';
+const baseURL = 'http://192.168.1.102:3000/Users';
 
 const signupUser = async (newUser) => {
   try {
@@ -11,10 +11,9 @@ const signupUser = async (newUser) => {
   }
 };
 
-const loginUser = async (user) => {
+const loginUser = async (newUser) => {
   try {
-    console.log('Service, user:  '+user);
-    const response = await axios.post(`${baseURL}/login`, user);
+    const response = await axios.post(`${baseURL}/login`, newUser);
     return response.data;
   } catch (error) {
     throw error.response.data;
