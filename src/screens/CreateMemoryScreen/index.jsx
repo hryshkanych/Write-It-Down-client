@@ -1,20 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, TextInput, Keyboard, TouchableWithoutFeedback, Alert, Image, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, TextInput, Alert, Image, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as MediaLibrary from 'expo-media-library';
 import { mainStyles } from '../../styles/MainStyles';
 import createMemoryScreenStyles from './style';
 import CreatingHeader from '../../components/CreatingHeader';
 import CreatingBottom from '../../components/CreatingBottom';
+import { useUserContext } from '../../contexts/userContext';
+import { addMemory } from '../../services/memoryService';
+import { useNavigation } from '@react-navigation/native';
+
 
 const CreateMemoryScreen = () => {
-  const [note, setNote] = useState('');
+  const [textNote, setTextNote] = useState('');
   const [selectedImages, setSelectedImages] = useState([]);
   const [creationDate, setCreationDate] = useState('');
+  const { user } = useUserContext();
+  const navigation = useNavigation();
 
   useEffect(() => {
     const currentDate = new Date();
-    const formattedDate = currentDate.toISOString(); // Форматуємо дату в ISO форматі
+    const formattedDate = currentDate.toISOString();
     setCreationDate(formattedDate);
   }, []);
 
@@ -30,10 +36,13 @@ const CreateMemoryScreen = () => {
         allowsMultipleSelection: true,
         quality: 1,
       });
-      if (!result.canceled) {
-        const newSelectedImageUris = result.assets.map(asset => asset.uri);
-        setSelectedImages([...selectedImages, ...newSelectedImageUris]); 
-        console.log('Selected Images:', selectedImages);
+      if (!result.cancelled) {
+        const newSelectedImages = result.assets.map(asset => ({
+          uri: asset.uri,
+          type: asset.mediaType,
+          filename: asset.fileName || `image-${selectedImages.length + 1}`,
+        }));
+        setSelectedImages(prevSelectedImages => [...prevSelectedImages, ...newSelectedImages]);
       }
     } catch (error) {
       console.log('Error accessing gallery:', error);
@@ -41,36 +50,59 @@ const CreateMemoryScreen = () => {
     }
   };
 
-  const handleCameraPress = () => {
-    Alert.alert('Camera Pressed');
+  const handleRemoveImage = uriToRemove => {
+    setSelectedImages(prevSelectedImages =>
+      prevSelectedImages.filter(image => image.uri !== uriToRemove)
+    );
   };
 
-  const handleSignalPress = () => {
-    Alert.alert('Signal Pressed');
+  const handleSaveMemoryPress = async () => {
+    try {
+      const formData = new FormData();
+      formData.append('userId', user._id);
+      formData.append('creationDate', creationDate);
+      formData.append('selected', false);
+      formData.append('textNote', textNote);
+  
+      selectedImages.forEach((image, index) => {
+        const filename = image.uri.split('/').pop();
+        const type = 'image/jpeg'; 
+  
+        formData.append(`file`, {
+          uri: image.uri,
+          type: type,
+          name: filename,
+        });
+
+      });
+  
+      await addMemory(formData);
+      navigation.navigate('Main-page');
+    } catch (error) {
+      console.log('Error saving memory:', error);
+      Alert.alert('Error', 'Something went wrong while saving your memory.');
+    }
   };
 
-  const handleRemoveImage = (uriToRemove) => {
-    setSelectedImages(selectedImages.filter(uri => uri !== uriToRemove));
-  };
 
   return (
     <View style={mainStyles.screenSettings}>
-      <CreatingHeader creationDate={creationDate} />
+      <CreatingHeader creationDate={creationDate} onSave={handleSaveMemoryPress} />
       <CreatingBottom
         onImagePress={handleImagePress}
-        onCameraPress={handleCameraPress}
-        onSignalPress={handleSignalPress}
+        onCameraPress={() => {}}
+        onSignalPress={() => {}}
       />
       <ScrollView style={[mainStyles.screenSettings, createMemoryScreenStyles.screenSettings]}>
         <View style={mainStyles.equalizer}>
           {selectedImages.length > 0 && (
             <View style={createMemoryScreenStyles.imageContainer}>
-              {selectedImages.map((uri, index) => (
+              {selectedImages.map((image, index) => (
                 <View key={index} style={createMemoryScreenStyles.imageWrapper}>
-                  <Image source={{ uri }} style={createMemoryScreenStyles.selectedImage} />
+                  <Image source={{ uri: image.uri }} style={createMemoryScreenStyles.selectedImage} />
                   <TouchableOpacity
                     style={createMemoryScreenStyles.removeButton}
-                    onPress={() => handleRemoveImage(uri)}
+                    onPress={() => handleRemoveImage(image.uri)}
                   >
                     <Text style={createMemoryScreenStyles.removeButtonText}>✕</Text>
                   </TouchableOpacity>
@@ -79,11 +111,11 @@ const CreateMemoryScreen = () => {
             </View>
           )}
           <TextInput
-            style={createMemoryScreenStyles.textInput}
+            style={[createMemoryScreenStyles.textInput, mainStyles.textDescription]}
             placeholder="Write your memory here..."
             multiline
-            value={note}
-            onChangeText={setNote}
+            value={textNote}
+            onChangeText={setTextNote}
             scrollEnabled={false}
           />
         </View>

@@ -6,7 +6,7 @@ const createMemoryScreenStyles = StyleSheet.create({
     paddingTop: 130,
   },
   textInput: {
-    marginBottom: 250,
+    marginBottom: 300,
   },
   imageContainer: {
     flexDirection: 'row',

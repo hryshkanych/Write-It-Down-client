@@ -25,6 +25,7 @@ const LogInScreen = () => {
     try {
       const newUser = { email, password };
       const response = await loginUser(newUser); 
+      console.log(response.user);
       setUser(response.user);
 
       setEmail('');

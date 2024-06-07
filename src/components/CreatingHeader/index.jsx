@@ -6,7 +6,7 @@ import { mainStyles } from '../../styles/MainStyles';
 import cretingHeaderStyles from './style';
 import { fontColors } from '../../styles/MainStyles';
 
-const CreatingHeader = ({ creationDate }) => {
+const CreatingHeader = ({ creationDate, onSave }) => {
   const formattedDate = new Date(creationDate);
   const displayDate = formattedDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 
@@ -19,7 +19,9 @@ const CreatingHeader = ({ creationDate }) => {
           <MaterialIcons name="more-vert" size={20} color="white" style={{ transform: [{ rotate: '90deg' }] }} />
         </TouchableOpacity>
       </View>
-      <Text style={cretingHeaderStyles.clickableText}>Done</Text>
+      <TouchableOpacity onPress={onSave}>
+        <Text style={cretingHeaderStyles.clickableText}>Done</Text>
+      </TouchableOpacity>
     </BlurView>
   );
 };

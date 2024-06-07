@@ -13,6 +13,9 @@ const mainScreenStyles = StyleSheet.create({
     left: 0,
     alignItems: 'center',
   },
+  contentPlacement: {
+    marginBottom: 300,
+  }
   
 });
 
