@@ -7,23 +7,35 @@ import createMemoryScreenStyles from './style';
 import CreatingHeader from '../../components/CreatingHeader';
 import CreatingBottom from '../../components/CreatingBottom';
 import { useUserContext } from '../../contexts/userContext';
-import { addMemory } from '../../services/memoryService';
-import { useNavigation } from '@react-navigation/native';
+import { addMemory, updateMemoryById } from '../../services/memoryService';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { useLoadingContext } from '../../contexts/loadingContext';
 
-
 const CreateMemoryScreen = () => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [memoryId, setMemoryId] = useState('');
   const [textNote, setTextNote] = useState('');
   const [selectedImages, setSelectedImages] = useState([]);
   const [creationDate, setCreationDate] = useState('');
   const { user } = useUserContext();
   const { setLoading } = useLoadingContext();
+  const { params } = useRoute(); 
   const navigation = useNavigation();
 
   useEffect(() => {
-    const currentDate = new Date();
-    const formattedDate = currentDate.toISOString();
-    setCreationDate(formattedDate);
+    if (params && params.memory) {
+      setIsEditing(true);
+      setMemoryId(params.memory._id)
+      setTextNote(params.memory.textNote);
+      const formattedImages = params.memory.images.map(uri => ({ uri }));
+      setSelectedImages(formattedImages);
+      setCreationDate(params.memory.creationDate);
+    } else {
+      setIsEditing(false);
+      const currentDate = new Date();
+      const formattedDate = currentDate.toISOString();
+      setCreationDate(formattedDate);
+    }
   }, []);
 
   const handleImagePress = async () => {
@@ -38,7 +50,7 @@ const CreateMemoryScreen = () => {
         allowsMultipleSelection: true,
         quality: 1,
       });
-      if (!result.cancelled) {
+      if (!result.canceled) {
         const newSelectedImages = result.assets.map(asset => ({
           uri: asset.uri,
           type: asset.mediaType,
@@ -58,7 +70,7 @@ const CreateMemoryScreen = () => {
     );
   };
 
-  const handleSaveMemoryPress = async () => {
+  const handleCreateMemory = async () => {
     try {
       const formData = new FormData();
       formData.append('userId', user._id);
@@ -79,18 +91,29 @@ const CreateMemoryScreen = () => {
       });
   
       await addMemory(formData);
-      setLoading(true);
+      setLoading(true)
       navigation.navigate('Main-page');
     } catch (error) {
-      console.log('Error saving memory:', error);
-      Alert.alert('Error', 'Something went wrong while saving your memory.');
+      console.log('Error creating memory:', error);
+      Alert.alert('Error', 'Something went wrong while creating your memory.');
+    }
+  };
+
+  const handleUpdateMemory = async () => {
+    try {
+      await updateMemoryById(memoryId, textNote); 
+      setLoading(true)
+      navigation.navigate('Main-page');
+    } catch (error) {
+      console.log('Error updating memory:', error);
+      Alert.alert('Error', 'Something went wrong while updating your memory.');
     }
   };
 
 
   return (
     <View style={mainStyles.screenSettings}>
-      <CreatingHeader creationDate={creationDate} onSave={handleSaveMemoryPress} />
+      <CreatingHeader creationDate={creationDate} onSave={ isEditing? handleUpdateMemory : handleCreateMemory} />
       <CreatingBottom
         onImagePress={handleImagePress}
         onCameraPress={() => {}}

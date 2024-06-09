@@ -33,7 +33,7 @@ const Note = ({ id, memory, onDelete }) => {
       </View>
       <View style={noteStyles.line}></View>
       <View style={noteStyles.contentContainer}>
-        <MenuWindow isVisible={isMenuVisible} onClose={closeMenu} memoryId={id} onDelete={onDelete} />
+        <MenuWindow isVisible={isMenuVisible} onClose={closeMenu} memory={memory} onDelete={onDelete} />
           {memory.images.length > 0 && (
             <View style={noteStyles.imageContainer}>
               {memory.images.map((image, idx) => (

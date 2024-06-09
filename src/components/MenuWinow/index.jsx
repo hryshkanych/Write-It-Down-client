@@ -5,26 +5,26 @@ import { mainAppColors, mainStyles } from '../../styles/MainStyles';
 import menuWindowStyles from './style';
 import { useNavigation } from '@react-navigation/native';
 
-const MenuWindow = ({ isVisible, onClose, memoryId, onDelete }) => {
+const MenuWindow = ({ isVisible, onClose, memory, onDelete }) => {
   const navigation = useNavigation(); 
 
   const handleDelete = async () => {
     try {
-      await onDelete(memoryId);
+      await onDelete(memory._id);
     } catch (error) {
       console.error('Error deleting memory:', error);
     }
   };
 
   const handleEdit = () => {
-    navigation.navigate('Create-memory', { memoryId });
+    navigation.navigate('Create-memory', { memory });
     onClose(); 
   };
 
   return (
     isVisible && (
       <View style={menuWindowStyles.menuContainer}>
-        <TouchableOpacity style={menuWindowStyles.menuItem} onPress={() => { /* Handle Edit */ onClose(); }}>
+        <TouchableOpacity style={menuWindowStyles.menuItem} onPress={handleEdit}>
           <MaterialIcons name="edit" size={20} color={'white'} />
           <Text style={menuWindowStyles.buttonText}>Edit</Text>
         </TouchableOpacity>

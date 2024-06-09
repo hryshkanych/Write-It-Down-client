@@ -4,6 +4,8 @@ const baseURL = 'http://192.168.0.104:3000/Memories';
 
 const addMemory = async (formData) => {
     try {
+
+        console.log('in adddddddd');
         const response = await axios.post(`${baseURL}/addMemory`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data', 
@@ -37,4 +39,16 @@ const deleteMemoryById = async (memoryId) => {
     }
 };
 
-export { addMemory, getAllMemories, deleteMemoryById };
+const updateMemoryById = async (memoryId, textNote) => {
+    try {
+        const response = await axios.put(`${baseURL}/updateMemory/${memoryId}`, { textNote });
+        return response.data;
+    } catch (error) {
+        console.error('Error updating memory:', error);
+        throw error;
+    }
+};
+
+
+
+export { addMemory, getAllMemories, deleteMemoryById, updateMemoryById };
