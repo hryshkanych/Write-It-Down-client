@@ -12,6 +12,7 @@ const noteStyles = StyleSheet.create({
     shadowRadius: 6.84,
     elevation: 2,
     marginBottom: 18,
+    zIndex: 0,
   },
   header: {
     width: '100%',
@@ -22,6 +23,7 @@ const noteStyles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 15,
+    zIndex: 0,
   },
   line: {
     width: '100%',

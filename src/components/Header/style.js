@@ -24,6 +24,12 @@ const headerStyles = StyleSheet.create({
   headerText: {
     marginBottom: 3,
   },
+  logOutButton: {
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   filterButton: {
     width: 40,
     height: 40,
@@ -31,6 +37,12 @@ const headerStyles = StyleSheet.create({
     backgroundColor: mainAppColors.icon, 
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  textAndButtonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 10,
   },
   line: {
     backgroundColor: '#F7F7F7',

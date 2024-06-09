@@ -10,41 +10,44 @@ import CreateMemoryScreen from './src/screens/CreateMemoryScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { UserProvider } from './src/contexts/userContext';
+import { LoadingProvider } from './src/contexts/loadingContext';
 
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
     <UserProvider>
-      <NavigationContainer>
-        <Stack.Navigator>
-        <Stack.Screen
-            name="Introduction"
-            component={IntroScreen}
-            options={{ headerShown: false }} 
-          />
-        <Stack.Screen
-            name="Sign-up"
-            component={SignUpScreen}
-            options={{ headerShown: false }} 
-          />
-        <Stack.Screen
-            name="Log-in"
-            component={LogInScreen}
-            options={{ headerShown: false }} 
-          />
-        <Stack.Screen
-            name="Main-page"
-            component={MainScreen}
-            options={{ headerShown: false }} 
-          />
-        <Stack.Screen
-            name="Create-memory"
-            component={CreateMemoryScreen}
-            options={{ headerShown: false }} 
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <LoadingProvider>
+        <NavigationContainer>
+          <Stack.Navigator>
+          <Stack.Screen
+              name="Introduction"
+              component={IntroScreen}
+              options={{ headerShown: false }} 
+            />
+          <Stack.Screen
+              name="Sign-up"
+              component={SignUpScreen}
+              options={{ headerShown: false }} 
+            />
+          <Stack.Screen
+              name="Log-in"
+              component={LogInScreen}
+              options={{ headerShown: false }} 
+            />
+          <Stack.Screen
+              name="Main-page"
+              component={MainScreen}
+              options={{ headerShown: false }} 
+            />
+          <Stack.Screen
+              name="Create-memory"
+              component={CreateMemoryScreen}
+              options={{ headerShown: false }} 
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </LoadingProvider>
     </UserProvider>
   );
 };
