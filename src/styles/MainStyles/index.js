@@ -90,9 +90,9 @@ const mainStyles = StyleSheet.create({
   smallText: {
     fontSize: fontSizes.small,
     color: fontColors.main,
-  }
-
+  },
 });
 
 
-export { mainStyles, fontSizes, mainButtonGradient, gradientEnd, mainAppColors, inputColors, fontColors, fontWeights};
+export { mainStyles, fontSizes, mainButtonGradient, gradientEnd, mainAppColors, inputColors, fontColors, 
+       fontWeights};

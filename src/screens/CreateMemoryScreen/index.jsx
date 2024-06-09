@@ -9,6 +9,7 @@ import CreatingBottom from '../../components/CreatingBottom';
 import { useUserContext } from '../../contexts/userContext';
 import { addMemory } from '../../services/memoryService';
 import { useNavigation } from '@react-navigation/native';
+import { useLoadingContext } from '../../contexts/loadingContext';
 
 
 const CreateMemoryScreen = () => {
@@ -16,6 +17,7 @@ const CreateMemoryScreen = () => {
   const [selectedImages, setSelectedImages] = useState([]);
   const [creationDate, setCreationDate] = useState('');
   const { user } = useUserContext();
+  const { setLoading } = useLoadingContext();
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -77,6 +79,7 @@ const CreateMemoryScreen = () => {
       });
   
       await addMemory(formData);
+      setLoading(true);
       navigation.navigate('Main-page');
     } catch (error) {
       console.log('Error saving memory:', error);

@@ -4,7 +4,7 @@ import { BlurView } from 'expo-blur';
 import { FontAwesome } from 'react-native-vector-icons';
 import { mainStyles } from '../../styles/MainStyles';
 import headerStyles from './style';
-import { fontColors } from '../../styles/MainStyles';
+import { fontColors, mainAppColors } from '../../styles/MainStyles';
 
 const Header = () => {
   return (

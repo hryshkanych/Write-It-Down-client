@@ -1,6 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-
 const mainScreenStyles = StyleSheet.create({
   screenSettings: {
     paddingTop: 140,
@@ -15,8 +14,7 @@ const mainScreenStyles = StyleSheet.create({
   },
   contentPlacement: {
     marginBottom: 300,
-  }
-  
+  },
 });
 
 export default mainScreenStyles;

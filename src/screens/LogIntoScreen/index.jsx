@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, TouchableOpacity, ImageBackground, Alert } from 'react-native';
-import Checkbox from 'expo-checkbox';
 import { FontAwesome } from 'react-native-vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { mainStyles, mainButtonGradient, gradientEnd } from '../../styles/MainStyles';
@@ -10,7 +9,7 @@ import TapButton from '../../components/Button';
 import AlternativeSignUp from '../../components/AlternativeSignUp';
 import DividerLine from '../../components/DividerLine';
 import { loginUser } from '../../services/userService'; 
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { useUserContext } from '../../contexts/userContext';
 
 const backgroundImage = require('../../../assets/Images/viewLogin.png');
@@ -32,7 +31,6 @@ const LogInScreen = () => {
       setPassword('');
 
       navigation.navigate('Main-page');
-      // Alert.alert('Success', response.message);
       
     } catch (error) {
       Alert.alert('Error', error.message);
@@ -46,6 +44,13 @@ const LogInScreen = () => {
   const handleEmailChange = (text) => {
     setEmail(text.toLowerCase());
   };
+
+  // Очищення стану користувача при фокусуванні на LogInScreen
+  useFocusEffect(
+    useCallback(() => {
+      setUser(0);
+    }, [])
+  );
 
   return (
     <View style={mainStyles.screenSettings}>

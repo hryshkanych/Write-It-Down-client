@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://192.168.1.102:3000/Memories';
+const baseURL = 'http://192.168.0.104:3000/Memories';
 
 const addMemory = async (formData) => {
     try {
@@ -27,4 +27,14 @@ const getAllMemories = async (userId) => {
     }
 };
 
-export { addMemory, getAllMemories };
+const deleteMemoryById = async (memoryId) => {
+    try {
+        const response = await axios.delete(`${baseURL}/deleteMemory/${memoryId}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error deleting memory:', error);
+        throw error;
+    }
+};
+
+export { addMemory, getAllMemories, deleteMemoryById };
