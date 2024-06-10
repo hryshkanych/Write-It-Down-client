@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { mainStyles, mainButtonGradient, gradientEnd} from '../../styles/MainStyles';
+import { View, Text } from 'react-native';
+import { mainStyles } from '../../styles/MainStyles';
 import introScreenStyles from './style';
-import Wave from '../../components/Wave';
+import DrawingGirl from '../../components/DrawingGirl';
 import TapButton from '../../components/Button';
 import { useNavigation } from '@react-navigation/native';
+
 
 const IntroScreen = () => {
   const navigation = useNavigation();
@@ -16,7 +16,7 @@ const IntroScreen = () => {
 
   return (
     <View style={[mainStyles.screenSettings, introScreenStyles.screenSettings]}>
-      <Wave/>
+      <DrawingGirl/>
       <View style={[mainStyles.equalizer]}>
         <View style={introScreenStyles.contentContainer}>
           <View style={introScreenStyles.nameTextContainer}>

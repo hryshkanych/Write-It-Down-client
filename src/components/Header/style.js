@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import { inputColors, mainAppColors } from '../../styles/MainStyles';
+import { fontColors, fontSizes, fontWeights, inputColors, mainAppColors } from '../../styles/MainStyles';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -50,6 +50,33 @@ const headerStyles = StyleSheet.create({
     width: windowWidth,
     position: 'absolute',
     bottom: 0,
+  },
+  filteringMenu: {
+    width: '45%',
+    height: 100,
+    borderRadius: 15,
+    backgroundColor: mainAppColors.icon,
+    position: 'absolute',
+    justifyContent: 'space-around',
+    top: 100,
+    right: 15,
+  },
+  filteringMenuItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 10,
+    padding: 20,
+  },
+  filteringMenuItemText: {
+    fontSize: fontSizes.button,
+    color: fontColors.button,
+    fontWeight: fontWeights.button,
+  },
+  separator: {
+    width: '100%',
+    height: 1,
+    backgroundColor: 'white',
   },
   
 });

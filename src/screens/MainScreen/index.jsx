@@ -2,17 +2,14 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { View, ScrollView, Text, TouchableOpacity, Image, Dimensions, ActivityIndicator } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
-import { FontAwesome } from 'react-native-vector-icons';
 import { mainAppColors, mainStyles } from '../../styles/MainStyles';
-import { mainButtonGradient, gradientEnd } from '../../styles/MainStyles';
 import mainScreenStyles from './style';
-import AlternativeSignUp from '../../components/AlternativeSignUp';
 import Header from '../../components/Header';
 import Note from '../../components/Note';
 import AddButton from '../../components/AddButton';
 import { useUserContext } from '../../contexts/userContext';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
-import { getAllMemories, deleteMemoryById } from '../../services/memoryService';
+import { getAllMemories, deleteMemoryById, updateMemory } from '../../services/memoryService';
 import { useLoadingContext } from '../../contexts/loadingContext';
 
 const MainScreen = () => {
@@ -20,6 +17,7 @@ const MainScreen = () => {
   const { loading, setLoading } = useLoadingContext();
   const navigation = useNavigation();
   const [memories, setMemories] = useState([]);
+  const [selectedFilter, setSelectedFilter] = useState('All');
 
   const fetchMemories = async () => {
     try {
@@ -34,9 +32,14 @@ const MainScreen = () => {
 
   useFocusEffect(
     useCallback(() => {
+      setLoading(true);
       fetchMemories();
     }, [user._id])
   );
+
+  const handleAddPress = () => {
+    navigation.navigate('Create-memory');
+  };
 
   const handleDeleteMemory = async (memoryId) => {
     try {
@@ -47,16 +50,26 @@ const MainScreen = () => {
     }
   };
 
-  const handleAddPress = () => {
-    navigation.navigate('Create-memory');
-  }
+  const handleLikePress =  async (memoryId, selected) => {
+    try {
+      await updateMemory(memoryId, { selected: selected } );
+      fetchMemories(); 
+    } catch (error) {
+      console.error('Error liking memory:', error);
+    }
+  };
+
+
+  const filteredMemories = selectedFilter === 'All' 
+    ? memories 
+    : memories.filter(memory => memory.selected);
 
   return (
     <LinearGradient
       colors={['#F2E8EB', '#EEEEE8']}
       style={mainStyles.screenSettings}
     >
-      <Header />
+      <Header selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter} />
       <ScrollView style={[mainStyles.screenSettings, mainScreenStyles.screenSettings]}>
         {loading ? ( // Відображаємо Loader, якщо дані ще не завантажені
           <View style={mainScreenStyles.loaderContainer}>
@@ -64,8 +77,8 @@ const MainScreen = () => {
           </View>
         ) : (
           <View style={[mainStyles.equalizer, mainScreenStyles.contentPlacement]}>
-            {memories.map((memory, index) => (
-              <Note key={index} id={memory._id} memory={memory} onDelete={handleDeleteMemory} />
+            {filteredMemories.map((memory, index) => (
+              <Note key={index} id={memory._id} memory={memory} onDelete={handleDeleteMemory} onLike={handleLikePress} />
             ))}
           </View>
         )}

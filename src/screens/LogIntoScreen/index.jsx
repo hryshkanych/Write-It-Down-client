@@ -45,7 +45,6 @@ const LogInScreen = () => {
     setEmail(text.toLowerCase());
   };
 
-  // Очищення стану користувача при фокусуванні на LogInScreen
   useFocusEffect(
     useCallback(() => {
       setUser(0);

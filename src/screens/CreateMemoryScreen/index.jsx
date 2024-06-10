@@ -7,7 +7,7 @@ import createMemoryScreenStyles from './style';
 import CreatingHeader from '../../components/CreatingHeader';
 import CreatingBottom from '../../components/CreatingBottom';
 import { useUserContext } from '../../contexts/userContext';
-import { addMemory, updateMemoryById } from '../../services/memoryService';
+import { addMemory, updateMemory } from '../../services/memoryService';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useLoadingContext } from '../../contexts/loadingContext';
 
@@ -91,7 +91,6 @@ const CreateMemoryScreen = () => {
       });
   
       await addMemory(formData);
-      setLoading(true)
       navigation.navigate('Main-page');
     } catch (error) {
       console.log('Error creating memory:', error);
@@ -101,7 +100,7 @@ const CreateMemoryScreen = () => {
 
   const handleUpdateMemory = async () => {
     try {
-      await updateMemoryById(memoryId, textNote); 
+      await updateMemory(memoryId, {textNote: textNote}); 
       setLoading(true)
       navigation.navigate('Main-page');
     } catch (error) {
