@@ -62,6 +62,16 @@ const noteStyles = StyleSheet.create({
     height: '100%',
     aspectRatio: 1,
   },
+  likeOptionContainer: {
+    flexDirection: 'row',
+    display: 'flex',
+    justifyContent: 'center',
+    alignContent: 'center',
+    gap: 10,
+  },
+  iconLike: {
+    paddingTop: 5,
+  }
   
 
 });

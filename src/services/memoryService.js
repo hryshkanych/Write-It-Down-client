@@ -4,8 +4,6 @@ const baseURL = 'http://192.168.0.104:3000/Memories';
 
 const addMemory = async (formData) => {
     try {
-
-        console.log('in adddddddd');
         const response = await axios.post(`${baseURL}/addMemory`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data', 
@@ -21,7 +19,7 @@ const addMemory = async (formData) => {
 const getAllMemories = async (userId) => {
     try {
         const response = await axios.post(`${baseURL}/getAllMemories`, { userId });
-        console.log(response.data);
+        // console.log(response.data);
         return response.data;
     } catch (error) {
         console.error('Error fetching memories:', error);
@@ -39,9 +37,9 @@ const deleteMemoryById = async (memoryId) => {
     }
 };
 
-const updateMemoryById = async (memoryId, textNote) => {
+const updateMemory = async (memoryId, updates) => {
     try {
-        const response = await axios.put(`${baseURL}/updateMemory/${memoryId}`, { textNote });
+        const response = await axios.put(`${baseURL}/updateMemory/${memoryId}`, updates);
         return response.data;
     } catch (error) {
         console.error('Error updating memory:', error);
@@ -50,5 +48,4 @@ const updateMemoryById = async (memoryId, textNote) => {
 };
 
 
-
-export { addMemory, getAllMemories, deleteMemoryById, updateMemoryById };
+export { addMemory, getAllMemories, deleteMemoryById, updateMemory };

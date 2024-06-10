@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, ImageBackground, Alert } from 'react-native';
 import Checkbox from 'expo-checkbox';
-import { FontAwesome } from 'react-native-vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
-import { mainStyles, mainButtonGradient, gradientEnd } from '../../styles/MainStyles';
+import { mainStyles } from '../../styles/MainStyles';
 import signUpScreenStyles from './style';
 import InputWithIcon from '../../components/Input';
 import TapButton from '../../components/Button';
